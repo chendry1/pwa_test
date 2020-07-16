@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example</title>
+    </head>
+    <body>
+	
+		<link rel='manifest' href='/manifest.json'>
+		<p>password:</p><input type="text" id="pass"></input><p>password rank:</p><p id="rank"></p><br/>
+		<p>password rank scaled:</p><p id="rankScaled">
+		<p>symbols:</p><input type="text" id="sym" value="8"></input>
+		<br/>
+		<input type="checkbox" name="check" id="uppercase" checked="1">uppercase</input>
+		<input type="checkbox" name="check" id="lowercase" checked="1">lowercase</input>
+		<input type="checkbox" name="check" id="numbers" checked="1">numbers</input>
+		<input type="checkbox" name="check" id="special" checked="1">special symbols</input>
+		<br/>
+		<input type="radio"  name="sel" id="allcharacters" checked="1">all characters</input>
+		<input type="radio"  name="sel" id="easyread">easy to read</input>
+		<input type="radio"  name="sel" id="easysay">easy to say</input>
+		<br/><br/>
+		<input type="button" value="Generate" onclick="clicked()"></input>
+		
+		<script type="module">
+			import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+			const el = document.createElement('pwabuilder-sw-register.js');
+			document.body.appendChild(el);
+		</script>
+		
+		<script>
+Notification.requestPermission(function(status) {
+    console.log('Notification permission status:', status);
+});		
+		</script>
+		
+		<script type="text/javascript" src="password_rank.js"></script>
+		<script type="text/javascript" src="password_generation.js"></script>
+		<script>
+async function showNotification() {
+	const result = await Notification.requestPermission();
+	if (result === 'granted') {
+		const noti = new Notification('Hello!', {
+			body: 'It’s me.',
+			icon: 'icons/icon-128x128.png'
+		});
+		noti.onclick = () => alert('clicked');
+	}
+}	
+		
+		function clicked()
+		{
+			showNotification();
+		
+			len = parseInt(document.getElementById('sym').value);
+			uppercase = document.getElementById('uppercase').checked;
+			lowercase = document.getElementById('lowercase').checked;
+			numbers = document.getElementById('numbers').checked;
+			special = document.getElementById('special').checked;
+			
+			
+			
+			mode = document.getElementById('allcharacters').checked;
+			mode += document.getElementById('easyread').checked * 2;
+			mode += document.getElementById('easysay').checked * 3;
+			
+			pass = PasswordGen.generate( len, uppercase, lowercase, numbers, special, mode );
+				
+			document.getElementById('pass').value = pass;
+			rank = PasswordRank.rank( pass );
+			document.getElementById('rank').innerHTML = rank;
+			rankScaled = PasswordRank.rank( pass, 8 );
+			document.getElementById('rankScaled').innerHTML = rankScaled;
+		}
+		</script>		
+    </body>
+	
+	
+	
+	
+	
+
+	
+	
+</html>
