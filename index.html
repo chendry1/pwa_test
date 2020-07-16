@@ -21,18 +21,6 @@
 		<input type="button" value="Generate" onclick="clicked()"></input>
 		
 		<script>
-			if ('serviceWorker' in navigator) {
-			  navigator.serviceWorker.register('service-worker.js')
-			  .then(function(registration) {
-				console.log('Registration successful, scope is:', registration.scope);
-			  })
-			  .catch(function(error) {
-				console.log('Service worker registration failed, error:', error);
-			  });
-			}		
-		</script>
-		
-		<script>
 Notification.requestPermission(function(status) {
     console.log('Notification permission status:', status);
 });		
