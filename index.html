@@ -2,10 +2,9 @@
 <html>
     <head>
         <title>Example</title>
+		<link rel='manifest' href='/manifest.json'>
     </head>
     <body>
-	
-		<link rel='manifest' href='/manifest.json'>
 		<p>password:</p><input type="text" id="pass"></input><p>password rank:</p><p id="rank"></p><br/>
 		<p>password rank scaled:</p><p id="rankScaled">
 		<p>symbols:</p><input type="text" id="sym" value="8"></input>
@@ -24,7 +23,7 @@
 		<script type="module">
 			import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
 
-			const el = document.createElement('pwabuilder-sw-register.js');
+			const el = document.createElement('pwabuilder-sw.js');
 			document.body.appendChild(el);
 		</script>
 		
