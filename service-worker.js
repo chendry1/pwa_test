@@ -1,4 +1,4 @@
-var cacheName = 'hello-pwa';
+const cacheName = 'hello-pwa';
 // This is the "Offline page" service worker
 
 //importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
