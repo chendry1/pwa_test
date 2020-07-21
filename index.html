@@ -19,6 +19,7 @@
 		<input type="radio"  name="sel" id="easysay">easy to say</input>
 		<br/><br/>
 		<input type="button" value="Generate" onclick="clicked()"></input>
+		<input type="button" value="Copy" onclick="clickedCopy()"></input>
 		
 		<script type="text/javascript" src="main.js"></script>
 		
@@ -65,6 +66,13 @@ async function showNotification() {
 			document.getElementById('rank').innerHTML = rank;
 			rankScaled = PasswordRank.rank( pass, 8 );
 			document.getElementById('rankScaled').innerHTML = rankScaled;
+		}
+		
+		function clickedCopy()
+		{
+			var pass = document.getElementById('pass');
+			pass.select();
+			document.execCommand("copy");
 		}
 		</script>		
     </body>
