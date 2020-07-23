@@ -5,11 +5,8 @@ const cacheName = 'hello-pwa';
 
 const CACHE = "pwabuilder-page";
 
-// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
-const offlineFallbackPage = "index.html";
-
 var filesToCache = [
-  'index.html',
+  'standalone.html',
   'password_rank.js',
   'password_generation.js',
   'icons/icon-128x128.png',
