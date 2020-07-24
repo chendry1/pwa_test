@@ -3,6 +3,9 @@ const cacheName = 'hello-pwa';
 
 //importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
 
+const isInStandaloneMode = () =>
+      (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
+
 const CACHE = "pwabuilder-page";
 
 var filesToCache = [
@@ -35,8 +38,12 @@ self.addEventListener('fetch', function(event) {
   console.log(event.request);
   if( event.request.url == "https://chendry1.github.io/pwa_test/" )
   {
-	  console.log( "root folder request detected, changing to standalone version" );
-	  request = new Request( "https://chendry1.github.io/pwa_test/standalone.html" );
+	  console.log( "root folder request detected" );
+	  if( isInStandaloneMode() )
+	  {
+		 console.log( "browser is in standalone mode" );
+		 request = new Request( "https://chendry1.github.io/pwa_test/standalone.html" );  
+	  }
   }
   
   event.respondWith(
