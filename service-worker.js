@@ -24,7 +24,7 @@ var installed = false;
 /* Start the service worker and cache all of the app's content */
 self.addEventListener('install', function(e) {
   console.log("install called");
-  installed = true;
+  //installed = true;
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
       return cache.addAll(filesToCache);
@@ -36,7 +36,7 @@ self.addEventListener('install', function(e) {
 self.addEventListener('fetch', function(event) {
   var request = event.request;
   console.log(event.request);
-  if( event.request.url == "https://chendry1.github.io/pwa_test/" )
+  /*if( event.request.url == "https://chendry1.github.io/pwa_test/" )
   {
 	  console.log( "root folder request detected" );
 	  if( installed )
@@ -44,7 +44,7 @@ self.addEventListener('fetch', function(event) {
 		 console.log( "browser is in standalone mode" );
 		 request = new Request( "https://chendry1.github.io/pwa_test/standalone.html" );  
 	  }
-  }
+  }*/
   
   event.respondWith(
     fetch(request).catch(function() {
