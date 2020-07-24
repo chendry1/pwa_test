@@ -18,6 +18,7 @@ var filesToCache = [
 
 /* Start the service worker and cache all of the app's content */
 self.addEventListener('install', function(e) {
+  console.log("install called");
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
       return cache.addAll(filesToCache);
@@ -28,6 +29,7 @@ self.addEventListener('install', function(e) {
 
 /* Network falling back to the cache */
 self.addEventListener('fetch', function(event) {
+  console.log("fetch called");
   event.respondWith(
     fetch(event.request).catch(function() {
       return caches.match(event.request);
