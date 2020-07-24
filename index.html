@@ -24,10 +24,15 @@
 		<script type="text/javascript" src="main.js"></script>
 		
 		<script>
-			console.log("Check if standalone");
-			if (window.matchMedia('(display-mode: standalone)').matches) {
-			  console.log("This is running as standalone.");
-			  window.location.href = "https://chendry1.github.io/pwa_test/standalone.html";
+			window.addEventListener('beforeinstallprompt', (e) => 
+			{
+				e.prompt();
+				  e.userChoice.then((choiceResult) => {
+					if (choiceResult.outcome === 'accepted') {
+					  console.log('User accepted the install prompt');
+					} else {
+					  console.log('User dismissed the install prompt');
+					}
 			}
 		</script>		
 		
