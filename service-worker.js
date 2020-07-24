@@ -7,6 +7,8 @@ const CACHE = "pwabuilder-page";
 
 var filesToCache = [
   'standalone.html',
+  'manifest.json',
+  'main.js',
   'password_rank.js',
   'password_generation.js',
   'icons/icon-128x128.png',
