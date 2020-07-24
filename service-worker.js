@@ -24,7 +24,6 @@ self.addEventListener('install', function(e) {
       return cache.addAll(filesToCache);
     })
   );
-  window.location.href = "https://chendry1.github.io/pwa_test/standalone.html";
 });
 
 /* Network falling back to the cache */
