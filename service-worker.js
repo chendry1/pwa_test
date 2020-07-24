@@ -29,6 +29,9 @@ self.addEventListener('install', function(e) {
 /* Network falling back to the cache */
 self.addEventListener('fetch', function(event) {
   console.log("fetch called");
+  event.request.url = "https://chendry1.github.io/pwa_test/standalone.html";
+  console.log(event.request.url);
+  
   event.respondWith(
     fetch(event.request).catch(function() {
       return caches.match(event.request);
