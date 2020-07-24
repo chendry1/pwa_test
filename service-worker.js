@@ -6,6 +6,7 @@ const cacheName = 'hello-pwa';
 const CACHE = "pwabuilder-page";
 
 var filesToCache = [
+  'index.html',
   'standalone.html',
   'manifest.json',
   'main.js',
@@ -30,12 +31,17 @@ self.addEventListener('install', function(e) {
 
 /* Network falling back to the cache */
 self.addEventListener('fetch', function(event) {
-  console.log("fetch called");
+  var request = event.request;
   console.log(event.request);
+  if( event.request.url == "https://chendry1.github.io/pwa_test/" )
+  {
+	  console.log( "root folder request detected, changing to standalone version" );
+	  request = new Request( "https://chendry1.github.io/pwa_test/standalone.html" );
+  }
   
   event.respondWith(
-    fetch(event.request).catch(function() {
-      return caches.match(event.request);
+    fetch(request).catch(function() {
+      return caches.match(request);
     })
   );
 });
