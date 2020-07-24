@@ -21,15 +21,15 @@
 		<input type="button" value="Generate" onclick="clicked()"></input>
 		<input type="button" value="Copy" onclick="clickedCopy()"></input>
 		
+		<script type="text/javascript" src="main.js"></script>
+		
 		<script>
 			console.log("Check if standalone");
 			if (window.matchMedia('(display-mode: standalone)').matches) {
 			  console.log("This is running as standalone.");
 			  window.location.href = "https://chendry1.github.io/pwa_test/standalone.html";
 			}
-		</script>
-		
-		<script type="text/javascript" src="main.js"></script>
+		</script>		
 		
 		<script>
 Notification.requestPermission(function(status) {
