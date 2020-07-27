@@ -33,12 +33,14 @@ self.addEventListener('fetch', function(event) {
   console.log("fetch called for request: " + request.url);
   
   event.respondWith(
-    caches.open(CACHE_NAME).then(
-	  fetch(request)
-        .then(function(response) { 
-		  return cache.put(request, response.clone()).then(function () { return response; } ) 
-		} )
+    caches.open(CACHE_NAME).then( function(cache)
+	  {
+	    fetch(request)
+          .then(function(response) { 
+           return cache.put(request, response.clone()).then(function () { return response; } ) 
+        } )
         .catch(function() { return cache.match(request); })
+	  }
 	)
   );
 });
