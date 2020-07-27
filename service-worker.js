@@ -17,12 +17,9 @@ var filesToCache = [
   'icons/icon-512x512.png'
 ];
 
-var installed = false;
-
 /* Start the service worker and cache all of the app's content */
 self.addEventListener('install', function(e) {
   console.log("install called");
-  //installed = true;
   e.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll(filesToCache);
@@ -33,6 +30,7 @@ self.addEventListener('install', function(e) {
 /* Network falling back to the cache */
 self.addEventListener('fetch', function(event) {
   var request = event.request;
+  console.log("fetch called for request: " + request.url);
   
   event.respondWith(
     caches.open(CACHE_NAME).then(
