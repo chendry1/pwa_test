@@ -36,30 +36,14 @@
 			  console.log('DISPLAY_MODE_RESIZE:', displayMode);
 			  if( displayMode != "browser tab" )
 			  {
-				window.location.replace("https://chendry1.github.io/pwa_test/standalone.html");
-			  }
-			});
-		
-			window.addEventListener('DOMContentLoaded', () => {
-			  let displayMode = 'browser tab';
-			  if (navigator.standalone) {
-				displayMode = 'standalone-ios';
-			  }
-			  if (window.matchMedia('(display-mode: standalone)').matches) {
-				displayMode = 'standalone';
-			  }
-			  // Log launch display mode to analytics
-			  console.log('DISPLAY_MODE_LAUNCH:', displayMode);
-			  if( displayMode != "browser tab" )
-			  {
-				window.location.replace("https://chendry1.github.io/pwa_test/standalone.html");
+				window.location.replace("standalone.html");
 			  }
 			});
 		
 			window.addEventListener('appinstalled', (evt) => {
 			  // Log install to analytics
 			  console.log('INSTALL: Success');
-			  window.location.replace("https://chendry1.github.io/pwa_test/standalone.html");
+			  window.location.replace("standalone.html");
 			  
 			});
 		</script>		
