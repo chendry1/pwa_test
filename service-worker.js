@@ -35,7 +35,7 @@ self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.open(CACHE_NAME).then( function(cache)
 	  {
-	    fetch(request)
+	    return fetch(request)
           .then(function(response) { 
            return cache.put(request, response.clone()).then(function () { return response; } ) 
         } )
