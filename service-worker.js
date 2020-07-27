@@ -29,7 +29,8 @@ self.addEventListener('install', function(e) {
   );
 });
 
-/* Network falling back to the cache */
+/* Network falling back to the cache
+  we store cache each time we are able to fetch page*/
 self.addEventListener('fetch', function(event) {
   var request = event.request;
   console.log("fetch called for request : " + request.url);

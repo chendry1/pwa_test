@@ -1,3 +1,7 @@
+// TO CONFIG
+const PWA_WINDOW_WIDTH = 600;
+const PWA_WINDOW_HEIGHT = 400;
+
 window.onload = () => {  
   if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./service-worker.js', {scope: './'})
@@ -24,6 +28,7 @@ function pwa_redirectIfNeeded()
   console.log('DISPLAY_MODE_RESIZE:', displayMode);
   if(displayMode != "browser tab") {
     window.location.replace("standalone.html");
+	window.resizeTo(600,400); // it will cause fixed window size, probably this behavior should be changed for mobile platform
   }  
 }
 
