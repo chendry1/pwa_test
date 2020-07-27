@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hello-pwa';
+const CACHE_NAME = 'ReviverSoftPasswordGenerator'; // FOR CONFIG
 // This is the "Offline page" service worker
 
 //importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
@@ -7,14 +7,16 @@ var filesToCache = [
   'index.html',
   'standalone.html',
   'manifest.json',
-  'main.js',
-  'password_rank.js',
-  'password_generation.js',
+  'pwa.js',
   'icons/icon-128x128.png',
   'icons/icon-144x144.png',
   'icons/icon-152x152.png',
   'icons/icon-192x192.png',
-  'icons/icon-512x512.png'
+  'icons/icon-512x512.png',
+  
+  // TO CONFIG
+  'password_rank.js',
+  'password_generation.js'  
 ];
 
 /* Start the service worker and cache all of the app's content */
@@ -34,13 +36,12 @@ self.addEventListener('fetch', function(event) {
   
   event.respondWith(
     caches.open(CACHE_NAME).then( function(cache)
-	  {
-	    return fetch(request)
-          .then(function(response) { 
-           return cache.put(request, response.clone()).then(function () { return response; } ) 
+    {
+      return fetch(request)
+        .then(function(response) { 
+          return cache.put(request, response.clone()).then(function () { return response; } ) 
         } )
         .catch(function() { return cache.match(request); })
-	  }
-	)
+	} )
   );
 });
