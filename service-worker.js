@@ -30,7 +30,7 @@ self.addEventListener('install', function(e) {
 /* Network falling back to the cache */
 self.addEventListener('fetch', function(event) {
   var request = event.request;
-  console.log("fetch called for request: " + request.url);
+  console.log("fetch called for request : " + request.url);
   
   event.respondWith(
     caches.open(CACHE_NAME).then( function(cache)
