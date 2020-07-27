@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ReviverSoftPasswordGenerator'; // FOR CONFIG
+const CACHE_NAME = 'PasswordGenerator'; // FOR CONFIG
 // This is the "Offline page" service worker
 
 //importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
