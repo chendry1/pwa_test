@@ -21,32 +21,7 @@
 		<input type="button" value="Generate" onclick="clicked()"></input>
 		<input type="button" value="Copy" onclick="clickedCopy()"></input>
 		
-		<script type="text/javascript" src="main.js"></script>
-		
-		<script>
-			window.addEventListener("resize", function(event) {
-			  let displayMode = 'browser tab';
-			  if (navigator.standalone) {
-				displayMode = 'standalone-ios';
-			  }
-			  if (window.matchMedia('(display-mode: standalone)').matches) {
-				displayMode = 'standalone';
-			  }
-			  // Log launch display mode to analytics
-			  console.log('DISPLAY_MODE_RESIZE:', displayMode);
-			  if( displayMode != "browser tab" )
-			  {
-				window.location.replace("standalone.html");
-			  }
-			});
-		
-			window.addEventListener('appinstalled', (evt) => {
-			  // Log install to analytics
-			  console.log('INSTALL: Success');
-			  window.location.replace("standalone.html");
-			  
-			});
-		</script>		
+		<script type="text/javascript" src="pwa.js"></script>
 		
 		<script>
 Notification.requestPermission(function(status) {
