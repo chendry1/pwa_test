@@ -28,12 +28,17 @@ function pwa_redirectIfNeeded()
   console.log('DISPLAY_MODE_RESIZE:', displayMode);
   if(displayMode != "browser tab") {
     window.location.replace("standalone.html");
-	window.resizeTo(600,400); // it will cause fixed window size, probably this behavior should be changed for mobile platform
-  }  
+	window.resizeTo(PWA_WINDOW_WIDTH,PWA_WINDOW_HEIGHT); // it will cause fixed window size, probably this behavior should be changed for mobile platform
+  }
 }
 
-// resize event handling is added for case 
+// resize event handling is added for case when PWA standalone is opened with Google Chrome (it just moves browser to separate screen without reloading so that it causes window resize)
 window.addEventListener("resize", function(event) {
+  pwa_redirectIfNeeded();
+});
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  console.log('DOM fully loaded and parsed');
   pwa_redirectIfNeeded();
 });
 
