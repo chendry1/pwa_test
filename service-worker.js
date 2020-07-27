@@ -1,4 +1,4 @@
-const cacheName = 'hello-pwa';
+const CACHE_NAME = 'hello-pwa';
 // This is the "Offline page" service worker
 
 //importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
@@ -17,8 +17,6 @@ var filesToCache = [
   'icons/icon-512x512.png'
 ];
 
-const CACHE = "pwabuilder-page";
-
 var installed = false;
 
 /* Start the service worker and cache all of the app's content */
@@ -26,7 +24,7 @@ self.addEventListener('install', function(e) {
   console.log("install called");
   //installed = true;
   e.waitUntil(
-    caches.open(cacheName).then(function(cache) {
+    caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll(filesToCache);
     })
   );
@@ -35,20 +33,12 @@ self.addEventListener('install', function(e) {
 /* Network falling back to the cache */
 self.addEventListener('fetch', function(event) {
   var request = event.request;
-  console.log(event.request);
-  /*if( event.request.url == "https://chendry1.github.io/pwa_test/" )
-  {
-	  console.log( "root folder request detected" );
-	  if( installed )
-	  {
-		 console.log( "browser is in standalone mode" );
-		 request = new Request( "https://chendry1.github.io/pwa_test/standalone.html" );  
-	  }
-  }*/
   
   event.respondWith(
-    fetch(request).catch(function() {
-      return caches.match(request);
-    })
+    caches.open(CACHE_NAME).then(
+	  fetch(request)
+        .then(function(response) { return cache.put(request, response.clone()).then(function () { return response; } ) )
+        .catch(function() { return cache.match(request); })
+	)
   );
 });
