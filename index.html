@@ -19,7 +19,8 @@
 		<input type="radio"  name="sel" id="easysay">easy to say</input>
 		<br/><br/>
 		<input type="button" value="Generate" onclick="clicked()"></input>
-		<input type="button" value="Copy" onclick="clickedCopy()"></input>
+		<input type="button" value="Copy" onclick="clickedCopy()"></input><br/>
+		<img id="capturedimg" src="icons/icon-512x512.png" style="width:512px;height:512px;"></img>
 		
 		<script type="text/javascript" src="pwa.js"></script>
 		
@@ -75,6 +76,23 @@ async function showNotification() {
 			var pass = document.getElementById('pass');
 			pass.select();
 			document.execCommand("copy");
+			
+			if(window.Windows)
+			{
+				var dialog = new Windows.Media.Capture.CameraCaptureUI();
+				var aspectRatio = { width: 1, height: 1 };
+				dialog.photoSettings.croppedAspectRatio = aspectRatio;
+				dialog.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).done(function (file) {
+					if (file) {
+						var photoBlobUrl = URL.createObjectURL(file, { oneTimeOnly: true });
+						document.getElementById("capturedimg").src = photoBlobUrl;
+					} else {
+						WinJS.log && WinJS.log("No photo captured.", "sample", "status");
+					}
+				}, function (err) {
+					WinJS.log && WinJS.log(err, "sample", "error");
+				});			
+			}
 		}
 		</script>		
     </body>
